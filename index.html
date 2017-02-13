@@ -22,10 +22,25 @@
 </div>
 
 <script>
- ((global, display) => {
-   global.addEventListener('keydown', (evt) => {
-    //  console.log(evt);
-     display.innerHTML = evt.key;
+ ((global, container, display) => {
+   let MAPPINGS = {
+     Eject: '&#9167;',
+     AudioVolumeMute: '&#128263;',
+     AudioVolumeDown: '&#128265;',
+     AudioVolumeUp: '&#128266;',
+     BrightnessDown: '&#128261;',
+     BrightnessUp: '&#128262;'
+   };
+   let lastEvt = {};
+   global.addEventListener('keyup', (evt) => {
+     let key = evt.key;
+     let mapping = MAPPINGS[key];
+     //console.log(key, evt);
+     if (!!lastEvt.key && lastEvt[key.toLowerCase() + 'Key'] === true) {
+       key = lastEvt.key;
+     }
+     display.innerHTML = mapping ? mapping : (key || 'Unknown');
+     lastEvt = evt;
    });
- })(window, document.querySelector('.key'));
+ })(window, document.querySelector('.container'), document.querySelector('.key'));
 </script>
