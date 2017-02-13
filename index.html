@@ -1,5 +1,6 @@
 <meta charset="utf-8">
 <title>Keystroke</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
 <style>
  .container {
    display: flex;
@@ -14,6 +15,8 @@
    background: rgba(0, 0, 0, .7);
    border-radius: 1rem;
    padding: 1rem;
+   transition: width 1s;
+   box-shadow: rgba(0, 0, 0, 0.5) .25rem .25rem .5rem;
  }
 </style>
 
@@ -35,14 +38,16 @@
    global.addEventListener('keyup', (evt) => {
      let key = evt.key;
      let mapping = MAPPINGS[key];
-     //console.log(key, evt);
+     // Thx Paul Irish https://www.paulirish.com/2009/random-hex-color-code-snippets/
+     let color = Math.floor(Math.random() * 16777215).toString(16);
      if (!!lastEvt.key && lastEvt[key.toLowerCase() + 'Key'] === true) {
        key = lastEvt.key;
      }
      display.innerHTML = mapping ? mapping : (key || 'Unknown');
      lastEvt = evt;
-     // Thx Paul Irish https://www.paulirish.com/2009/random-hex-color-code-snippets/
-     display.style.backgroundColor = '#' + Math.floor(Math.random() * 16777215).toString(16);
+     display.style.color = '#' + color;
+     display.style.backgroundColor = '#' + (color.split('').reverse().join(''));
+    //  container.style.backgroundColor = '#' + color;
    });
 
  })(window, document.querySelector('.container'), document.querySelector('.key'));
