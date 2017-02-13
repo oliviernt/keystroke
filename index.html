@@ -1,0 +1,31 @@
+<meta charset="utf-8">
+<title>Keystroke</title>
+<style>
+ .container {
+   display: flex;
+   flex-direction: column;
+   justify-content: center;
+   align-items: center;
+ }
+ .key {
+   font-size: 10rem;
+   font-family: sans-serif;
+   color: white;
+   background: rgba(0, 0, 0, .7);
+   border-radius: 1rem;
+   padding: 1rem;
+ }
+</style>
+
+<body class="container">
+  <main class="key"></main>
+</div>
+
+<script>
+ ((global, display) => {
+   global.addEventListener('keydown', (evt) => {
+     console.log(evt);
+     display.innerHTML = evt.key;
+   });
+ })(window, document.querySelector('.key'));
+</script>
