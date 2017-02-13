@@ -41,6 +41,9 @@
      }
      display.innerHTML = mapping ? mapping : (key || 'Unknown');
      lastEvt = evt;
+     // Thx Paul Irish https://www.paulirish.com/2009/random-hex-color-code-snippets/
+     display.style.backgroundColor = '#' + Math.floor(Math.random() * 16777215).toString(16);
    });
+
  })(window, document.querySelector('.container'), document.querySelector('.key'));
 </script>
