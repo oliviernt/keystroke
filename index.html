@@ -30,7 +30,7 @@
 
 <script>
  ((global, container, display) => {
-   let MAPPINGS = {
+   const MAPPINGS = {
      Eject: '&#9167;',
      AudioVolumeMute: '&#128263;',
      AudioVolumeDown: '&#128265;',
@@ -40,14 +40,14 @@
    };
    let lastEvt = {};
    global.addEventListener('keyup', (evt) => {
-     let key = evt.key;
-     let mapping = MAPPINGS[key];
+     const key = evt.key;
+     const mapping = MAPPINGS[key];
      // Thx Paul Irish https://www.paulirish.com/2009/random-hex-color-code-snippets/
-     let color = Math.floor(Math.random() * 16777215).toString(16);
+     const color = Math.floor(Math.random() * 16777215).toString(16);
      if (!!lastEvt.key && lastEvt[key.toLowerCase() + 'Key'] === true) {
        key = lastEvt.key;
      }
-     display.innerHTML = mapping ? mapping : (key || 'Unknown');
+     display.innerHTML = (mapping ? mapping : (key || 'Unknown')) + ' (' + evt.char + ')';
      lastEvt = evt;
      display.style.color = '#' + color;
      display.style.backgroundColor = '#' + (color.split('').reverse().join(''));
