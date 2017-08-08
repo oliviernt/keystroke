@@ -47,7 +47,7 @@
      if (!!lastEvt.key && lastEvt[key.toLowerCase() + 'Key'] === true) {
        key = lastEvt.key;
      }
-     display.innerHTML = (mapping ? mapping : (key || 'Unknown')) + ' (' + evt.char + ')';
+     display.innerHTML = (mapping ? mapping : (key || 'Unknown'));
      lastEvt = evt;
      display.style.color = '#' + color;
      display.style.backgroundColor = '#' + (color.split('').reverse().join(''));
