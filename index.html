@@ -40,10 +40,10 @@
    };
    let lastEvt = {};
    global.addEventListener('keyup', (evt) => {
-     const key = evt.key;
-     const mapping = MAPPINGS[key];
+     let key = evt.key;
+     let mapping = MAPPINGS[key];
      // Thx Paul Irish https://www.paulirish.com/2009/random-hex-color-code-snippets/
-     const color = Math.floor(Math.random() * 16777215).toString(16);
+     let color = Math.floor(Math.random() * 16777215).toString(16);
      if (!!lastEvt.key && lastEvt[key.toLowerCase() + 'Key'] === true) {
        key = lastEvt.key;
      }
